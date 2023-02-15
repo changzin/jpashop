@@ -7,10 +7,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS")
-public class Order {
+public class Orders {
     @Id
     @GeneratedValue
-    @Column(name = "ORDER_ID")
+    @Column(name = "ORDERS_ID")
     private Long id;
 
     @ManyToOne
@@ -19,8 +19,13 @@ public class Order {
     private LocalDateTime orderDate;
     @Enumerated(EnumType.STRING)
     private Orderstatus status;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "orders")
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+
 
     public Long getId() {
         return id;
